@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HOKKAIDO 未来リーダーズ</title>
+<meta name="description" content="北海道には、未来を創造するリーダーがいる。各地で事業を営む30人の言葉を記録するインタビューメディア。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ロゴと同じ荒れた質感をつくるフィルター群 -->
+<svg class="u-defs" aria-hidden="true" focusable="false"><defs>
+  <filter id="rough" x="-8%" y="-18%" width="116%" height="136%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.011 0.08" numOctaves="3" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="rough-s" x="-6%" y="-14%" width="112%" height="128%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.018 0.11" numOctaves="2" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="4.2" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</defs></svg>
+
+<header class="l-header">
+  <div class="l-header__bar">
+    <a class="l-header__logo" href="index.html"><img src="assets/img/logo_h_white.png" alt="HOKKAIDO 未来リーダーズ"></a>
+    <nav class="l-header__nav">
+      <a href="index.html#leaders">LEADERS</a><a href="index.html#index">INDEX</a>
+      <a href="index.html#media">ON AIR</a><a href="contact.html">CONTACT</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 中身は assets/js/data.js のデータから assets/js/article.js が生成します -->
+<main id="article"></main>
+
+<footer class="l-footer">
+  <div class="l-wrap">
+    <img class="l-footer__logo" src="assets/img/logo_white.png" alt="HOKKAIDO 未来リーダーズ">
+    <nav class="l-footer__nav"><a href="index.html#leaders">LEADERS</a><a href="index.html#index">INDEX</a><a href="index.html#media">ON AIR</a><a href="contact.html">CONTACT</a><a href="policy.html">POLICY</a></nav>
+    <p class="l-footer__cr">HOKKAIDO FUTURE LEADERS 2026 &nbsp;/&nbsp; &copy; 2026</p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/article.js"></script>
+</body>
+</html>
