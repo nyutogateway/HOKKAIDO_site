@@ -12,6 +12,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<script>
+/* 表示直後を黒で覆う。薄くするのは assets/js/site.js */
+(function () {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var r = document.documentElement;
+  r.className += ' is-opening';
+  setTimeout(function () { r.classList.remove('is-opening'); }, 4000);   /* 保険 */
+})();
+</script>
 </head>
 <body>
 
@@ -42,16 +51,9 @@
   <section class="p-hero">
     <!-- 横に流れる人物写真は assets/js/site.js が data.js から生成します -->
     <div class="p-hero__strip"></div>
-      <div class="p-hero__cell p-hero__cell--2"></div>
-      <div class="p-hero__cell p-hero__cell--3"></div>
-      <div class="p-hero__cell p-hero__cell--4"></div>
-      <div class="p-hero__cell p-hero__cell--5"></div>
-      <div class="p-hero__cell p-hero__cell--6"></div>
-    </div>
     <div class="p-hero__veil"></div>
     <div class="p-hero__body">
       <img class="p-hero__logo" src="assets/img/logo_white.png" alt="HOKKAIDO 未来リーダーズ 次世代へのエール">
-      <p class="p-hero__cap">「北海道の次をつくる」30人</p>
     </div>
   </section>
 
@@ -59,11 +61,11 @@
     <div class="l-wrap">
       <div class="p-intro__grid">
         <p class="p-intro__copy">
-          北海道には、<br>未来を創るリーダーがいる。<br>
-          世界と戦うモノづくり企業、<br>
-          新たな価値を生み出す起業家、<br>
-          地域の絆を深めるキーパーソン……<br>
-          その最前線に迫るストーリー。
+          <span class="is-lead">北海道には、</span><span class="is-lead">未来を創るリーダーがいる。</span>
+          <span>世界と戦うモノづくり企業、</span>
+          <span>新たな価値を生み出す起業家、</span>
+          <span>地域の絆を深めるキーパーソン……</span>
+          <span class="is-end">その最前線に迫るストーリー。</span>
         </p>
       </div>
     </div>

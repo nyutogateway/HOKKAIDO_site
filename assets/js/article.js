@@ -40,18 +40,30 @@
       '</section>';
   }
 
+  var STRIP_MIN = 8;    /* 1 周がビューポート幅を超えるまで繰り返す枚数 */
+  var STRIP_SEC = 4;    /* 1 枚あたりの流れる秒数 */
+
   function strip(photos, name) {
     if (!photos || !photos.length) return '';
     var base = photos.slice();
-    while (base.length < 8) base = base.concat(photos);  /* 1 周がビューポート幅を超えるまで繰り返す */
+    while (base.length < STRIP_MIN) base = base.concat(photos);
     var cells = base.concat(base).map(function (p, i) {
       return i < base.length
         ? '<img src="' + esc(p) + '" alt="' + esc(name) + ' の写真" loading="lazy">'
         : '<img src="' + esc(p) + '" alt="" aria-hidden="true" loading="lazy">';
     }).join('');
     return '<div class="p-strip">' +
-      '<div class="p-strip__track" style="animation-duration:' + (base.length * 4) + 's">' +
+      '<div class="p-strip__track" style="animation-duration:' + (base.length * STRIP_SEC) + 's">' +
       cells + '</div></div>';
+  }
+
+  /* タイトルと description は静的には出せないので、描画時に差し替える */
+  function setMeta(r) {
+    document.title = r.catch + '｜HOKKAIDO 未来リーダーズ';
+    var meta = document.querySelector('meta[name="description"]');
+    if (!meta) return;
+    meta.setAttribute('content',
+      r.jp + '（' + r.co + (r.role ? ' ' + r.role : '') + '）— ' + r.catch);
   }
 
   function render(r, idx) {
@@ -64,12 +76,7 @@
       if (i === 1) blocks += strip(r.strip, r.jp);
     });
 
-    document.title = r.catch + '｜HOKKAIDO 未来リーダーズ';
-    var meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute('content',
-        r.jp + '（' + r.co + (r.role ? ' ' + r.role : '') + '）— ' + r.catch);
-    }
+    setMeta(r);
 
     return '' +
       '<section class="p-lead">' +
@@ -82,8 +89,9 @@
       '        <p class="p-lead__en">' + esc(r.en) + '</p>' +
       '        <p class="p-lead__jp">' + esc(r.jp) + '</p>' +
       '        <p class="p-lead__co">' + esc(r.co) + (r.role ? '　' + esc(r.role) : '') + '</p>' +
-      (r.site ? '        <a class="p-lead__site" href="' + esc(r.site) + '" target="_blank" rel="noopener">' + esc(r.site) + '</a>' : '') +
       '        <p class="p-lead__prof">' + nl2br(r.lead) + '</p>' +
+      (r.site ? '        <a class="p-lead__site" href="' + esc(r.site) + '" target="_blank" rel="noopener">' +
+        '公式サイトを見る</a>' : '') +
       '      </div>' +
       '    </div>' +
       '  </div>' +
